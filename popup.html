@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FocusFlow</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="brand">
+        <span class="brand-icon">⚡</span>
+        <h1>FocusFlow</h1>
+      </div>
+      <span class="badge">v1.2</span>
+    </header>
+
+    <!-- Pomodoro Timer Module -->
+    <section class="panel timer-panel">
+      <div class="panel-header">
+        <span class="panel-title" id="modeIndicator">Focus Session</span>
+        <button id="toggleSettingsBtn" class="icon-btn" title="Configure Durations">⚙️ Config</button>
+      </div>
+
+      <!-- Config Drawer (Hidden by default, toggled via settings button) -->
+      <div id="settingsDrawer" class="settings-drawer hidden">
+        <div class="config-group">
+          <label>Focus Duration:</label>
+          <div class="time-inputs">
+            <input type="number" id="focusHrInput" min="0" max="12" value="0" placeholder="hr"> hr
+            <input type="number" id="focusMinInput" min="0" max="59" value="25" placeholder="min"> min
+          </div>
+        </div>
+        <div class="config-group">
+          <label>Break Duration:</label>
+          <div class="time-inputs">
+            <input type="number" id="breakHrInput" min="0" max="12" value="0" placeholder="hr"> hr
+            <input type="number" id="breakMinInput" min="0" max="59" value="5" placeholder="min"> min
+          </div>
+        </div>
+        <button id="setTimerBtn" class="btn btn-primary btn-sm">Save Durations</button>
+      </div>
+      
+      <div class="timer-display" id="timerDisplay">25:00</div>
+
+      <div class="control-row">
+        <button id="startPauseBtn" class="btn btn-primary">Start Session</button>
+        <button id="resetBtn" class="btn btn-secondary">Reset</button>
+        <button id="modeSwitchBtn" class="btn btn-subtle">Switch Mode</button>
+      </div>
+    </section>
+
+    <!-- Audio Stream Module -->
+    <section class="panel audio-panel">
+      <h2>Ambient Audio</h2>
+      <div class="audio-controls">
+        <button class="btn btn-subtle audio-btn" id="playLofiBtn">Deep Focus </button>
+        <button class="btn btn-subtle audio-btn" id="playRainBtn">White Noise </button>
+        <button id="stopAudioBtn" class="btn btn-danger-subtle">Stop</button>
+      </div>
+      <audio id="audioStream" preload="none" loop></audio>
+    </section>
+
+    <!-- Progress Tracker Module -->
+    <section class="panel progress-panel">
+      <div class="progress-meta">
+        <span class="label">Completion Status</span>
+        <span id="progressText" class="value">0/0 (0%)</span>
+      </div>
+      <div class="progress-track">
+        <div id="progressBar" class="progress-fill"></div>
+      </div>
+    </section>
+
+    <!-- To-Do List Module -->
+    <section class="panel task-panel">
+      <h2>Active Tasks</h2>
+      <div class="input-group">
+        <input type="text" id="taskInput" placeholder="Add a new deliverable..." maxlength="60">
+        <button id="addTaskBtn" class="btn btn-accent">+</button>
+      </div>
+      <ul id="taskList" class="task-list"></ul>
+      <div id="emptyState" class="empty-state">No pending tasks recorded.</div>
+    </section>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
